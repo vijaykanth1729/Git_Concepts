@@ -1,0 +1,76 @@
+Intro:
+--------
+Git is the foundation of every devops pipelines.
+
+everything else (K8s, terraform, docker) depends on Git workflows.
+
+Today we'll understand :
+  Setup git locally with SSH
+  Create & Clone Repo
+  Practice commits, branches, and pushes.
+
+  Setup:
+    git config --global user.name "Your username"
+    git config --global user.email "your email id"
+
+Clone Repo URL locally:
+------------------------
+
+git clone https://github.com/vijaykanth1729/Git_Concepts.git
+
+git add .
+git commit -m "first commit"
+git push -u origin main (Asks for password , u can login using browser)
+
+SSH way of pushing changes:
+----------------------------
+
+ssh-keygen -t rsa -b 4096
+
+copy your public key and create a ssh key in github UI from settings. and paste the key.
+
+git remote -v (initially shows https)
+
+git remote set-url origin  git@github.com:vijaykanth1729/Git_Concepts.git
+
+then it shows ssh way of URL.
+
+git log (shows entire commit history details)
+
+Always create branches for your features. 
+----------------------------------------------
+git branch branch_name (this creates a branch)
+git checkout branch_name (checkout is like switching the branch from one branch to other branch)
+git checkout -b feature1 (it creates a branch and automatically check in to that branch.)
+git add .
+git commit -m "updated feature branch"
+git push -u origin feature (pushing the local branch to remote repository)
+
+delete a branch from github:  git push origin --delete feature1
+
+delete a branch locally from system: git branch -d feature1
+
+once you checkout to main branch, you can issue a merge command to merge feature branch changes to main branch locally.
+
+    git checkout main 
+    git merge branch_name(feature1)
+
+for mergeing changes on github(Remotely) u always create Pull request and once approved we can merge.
+
+
+Tips :
+-----
+Always create feature branches --> Avoid direct commits to main/master
+
+always write meaningful commit messages.
+
+Tasks for you:
+---------------
+Setup git with SSH 
+create a new repo and push initial commit
+
+create a feature branch --> add files--> commit--> merge back to main. locally as well as remotely by creating pull requests.
+
+share your repo links in class group.
+
+
