@@ -1,3 +1,86 @@
 Git Advanced Concepts:
 ------------------------
-jksjkhsjk
+Rebase:
+---------
+it takes all the commits from one branch and applies on tip of another branch, so that way it creates a linear history of commits and your commit history
+looks very cleaner.
+
+eg:  (Main) A---B--C
+      feature      D--E--F 
+
+      git checkout feature 
+      git rebase main  (It takes all changes from feature and applies on top of main branch, so rebase will rewrites all the history.)
+
+      Main: A--B--C--D--E--F (it creates a linear history)
+
+Cherry-pick:
+------------
+Its a way of picking changes from one branch and applying that change on to another branch. (U take a commit id and apply on another branch.)
+
+Main:  A - B - C
+feature: D - E - F -G 
+
+CHERRY-PICK: A -- B -- C-- F  (git cherry-pick commit_id1 commit_id2)
+
+Sqash:
+---------
+Is a way storing your changes temporarily and working around other branches and later you come back and apply you stash changes.
+
+feature1---some code change (add this data)
+
+feature2 -- which you also want to work immediately :
+
+in order to move from feature 1 to feature 2 branch u must commit the changes first in feature 1 then execute checkout command to feature 2.
+
+git sqash (so this will store the change temporarily without commiting and allows you to move to other branch.)
+
+git sqash apply. this now commits you previous changes to commit area.
+
+git sqash pop. this pops out changes later u can manualy add them using (git add command.)
+
+merge:
+-------
+taking changes from one branch and applying on other without loosing any commit history..
+eg: Main: A -- B -- C
+    FEAT: D---E -- F  
+
+    git merge feature ( A - B - C - G)
+                        D -- E -- F 
+
+
+
+**Free website to practice GIT can give good Visualization**:
+----------------------------------------------------------
+https://learngitbranching.js.org/
+
+
+Branching strategies:
+----------------------
+Git flow: main, develop/*, feature/*, release/*, hotfix/*
+
+trunk based: everything is pushed into main branch.
+
+feature branching: you create branch based on feature your creating. feature/login-page (short lived branches)
+
+Pull request, code review process:  PR should be always created inorder to merge the changes , u can not directly merge change into Main branch.
+
+Code review will be done with you codevelopers..(comments also posssible.)
+
+Hooks & workflows:
+--------------------
+hooks used to execute local scripts based on some git events:
+
+pre-commit, pre-push, commit-msg (hook) .git/hooks/pre-commit (bash script like npm test)
+
+workflows:
+----------
+used mainly to perform cicd actions like build, test, deploy
+
+workflows will execute based on push, pull_request, workflow_dispatch, schedule.
+
+hot fix handling: u handle the hot fix changes immediately and push them to main branch (These are emergency fixes performed on your code base.)
+
+Branch Protection rule:
+------------------------
+
+settings and branches and create a rule set which will protect  your branch.
